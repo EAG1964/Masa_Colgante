@@ -32,7 +32,7 @@
         .vector-text { position: relative; display: inline-block; font-weight: normal; margin: 0 2px; }
         .vector-text::before { content: '→'; position: absolute; top: -0.75em; left: 50%; transform: translateX(-50%); font-size: 0.8em; font-weight: normal; color: #555; }
         
-        sub { font-size: 0.75em; vertical-align: sub; font-weight: bold; line-height: 0; }
+        sub { font-size: 0.75em; vertical-align: sub; line-height: 0; }
         .calc-res { color: #c0392b; font-weight: bold; }
         .mov-res { color: #27ae60; font-weight: bold; background: #e8f8f5; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px;}
 
@@ -73,14 +73,14 @@
         <input type="range" id="valA1" min="10" max="85" step="0.5" value="35" oninput="updateValues()">
         <label><span>Masa m₁:</span> <span><span id="vM1" class="val-display">5.0</span> kg</span></label>
         <input type="range" id="valM1" min="0.5" max="15" step="0.5" value="5" oninput="updateValues()">
-        <label><span>μ<sub>s1</sub> (Estático):</span> <span id="vMuS1" class="val-display">0.30</span></label>
+        <label><span>μ<sub>e1</sub> (Estático):</span> <span id="vMuS1" class="val-display">0.30</span></label>
         <input type="range" id="valMuS1" min="0" max="1" step="0.01" value="0.30" oninput="updateValues()">
-        <label><span>μ<sub>k1</sub> (Cinético):</span> <span id="vMuK1" class="val-display">0.20</span></label>
+        <label><span>μ<sub>c1</sub> (Cinético):</span> <span id="vMuK1" class="val-display">0.20</span></label>
         <input type="range" id="valMuK1" min="0" max="1" step="0.01" value="0.20" oninput="updateValues()">
 
         <h3>Bloque 2 (Colgante)</h3>
-        <label><span>Masa m₂:</span> <span><span id="vM2" class="val-display">3.0</span> kg</span></label>
-        <input type="range" id="valM2" min="0.5" max="15" step="0.5" value="3" oninput="updateValues()">
+        <label><span>Masa m₂:</span> <span><span id="vM2" class="val-display">6.0</span> kg</span></label>
+        <input type="range" id="valM2" min="0.5" max="15" step="0.5" value="6" oninput="updateValues()">
         <div style="font-size: 0.65rem; color: #7f8c8d; margin-top: 5px; text-align: justify;">
             <i>*El bloque 2 cuelga libremente. No hay ángulo ni fuerza normal que genere fricción.</i>
         </div>
@@ -103,10 +103,10 @@
     </div>
 
     <div class="info-panel">
-        <h3>Análisis Dinámico (g = 9.81  m/s²)</h3>
+        <h3>Análisis Dinámico (g = 9.81 m/s²)</h3>
         
         <div id="s1" class="step-card">
-            <b>1. Datos registrados:</b><br>
+            <b>1. Datos Registrados:</b><br>
             Cuerpo 1 (Rampa): α₁ = <span id="dataA1">0</span>° ; m₁ = <span id="dataM1">0</span> kg<br>
             Cuerpo 2 (Colgante): m₂ = <span id="dataM2">0</span> kg
         </div>
@@ -128,7 +128,7 @@
         </div>
         
         <div id="s4" class="step-card">
-            <b>4. Descomponer el Peso:</b><br>
+            <b>4. Descomposición del Peso:</b><br>
             <u>Cuerpo 1:</u><br>
             Ecuaciones vectoriales:<br>
             <span class="vector-text">P</span><sub>1x</sub> = <span class="vector-text">P</span><sub>1</sub> • sen(α₁)<br>
@@ -137,7 +137,8 @@
             P<sub>1x</sub> = P₁ • sen(α₁) = <span class="calc-res" id="resP1x">0</span> N<br>
             P<sub>1y</sub> = P₁ • cos(α₁) = <span class="calc-res" id="resP1y">0</span> N<br><br>
             <u>Cuerpo 2:</u><br>
-            Al ser vertical, <span class="vector-text">P</span><sub>2y</sub> = <span class="vector-text">P</span><sub>2</sub> (Módulo P<sub>2y</sub> = P₂).
+            Ecuación vectorial: <span class="vector-text">P</span><sub>2y</sub> = <span class="vector-text">P</span><sub>2</sub><br>
+            Cálculo de módulo: P<sub>2y</sub> = P₂ = <span class="calc-res" id="resP2y">0</span> N
         </div>
         
         <div id="s5" class="step-card">
@@ -152,9 +153,9 @@
         <div id="s6" class="step-card">
             <b>6. Fricción Estática Máxima:</b><br>
             Solo el bloque 1 sufre rozamiento.<br>
-            Ecuación vectorial: <span class="vector-text">F</span><sub>rs1(máx)</sub> = μ<sub>s1</sub> • <span class="vector-text">N</span><sub>1</sub><br><br>
+            Ecuación vectorial: <span class="vector-text">F</span><sub>re1(máx)</sub> = μ<sub>e1</sub> • <span class="vector-text">N</span><sub>1</sub><br><br>
             Cálculo de magnitud:<br>
-            F<sub>rs1(máx)</sub> = μ<sub>s1</sub> • N<sub>1</sub> = <span class="calc-res" id="resFrS1">0</span> N<br><br>
+            F<sub>re1(máx)</sub> = μ<sub>e1</sub> • N<sub>1</sub> = <span class="calc-res" id="resFrS1">0</span> N<br><br>
             <b>Umbral Total a Vencer:</b> <span class="calc-res" id="resFrSTotal">0</span> N
         </div>
 
@@ -289,17 +290,18 @@
         let mainChar = lbl;
         let sub = "";
         if (lbl.length > 1) { mainChar = lbl.charAt(0); sub = lbl.substring(1); }
-        if (lbl.startsWith("Fr")) { mainChar = "F"; sub = lbl.substring(1); } 
         
         ctx.fillText(mainChar, tx, ty);
         const textWidth = ctx.measureText(mainChar).width;
         
+        // Ajuste dinámico de altura para la flecha del vector sobre letras minúsculas (ej. 'f', 'F')
+        let yOffset = (mainChar === 'f' || mainChar === 'F') ? 18 : 16;
         ctx.lineWidth = 1.2; ctx.beginPath(); 
-        ctx.moveTo(tx, ty - 16); ctx.lineTo(tx + textWidth, ty - 16); ctx.stroke();
+        ctx.moveTo(tx, ty - yOffset); ctx.lineTo(tx + textWidth, ty - yOffset); ctx.stroke();
         ctx.beginPath(); 
-        ctx.moveTo(tx + textWidth, ty - 16); 
-        ctx.lineTo(tx + textWidth - 2, ty - 19); 
-        ctx.lineTo(tx + textWidth - 2, ty - 13); ctx.fill();
+        ctx.moveTo(tx + textWidth, ty - yOffset); 
+        ctx.lineTo(tx + textWidth - 2, ty - yOffset - 3); 
+        ctx.lineTo(tx + textWidth - 2, ty - yOffset + 3); ctx.fill();
         
         if(sub !== "") {
             ctx.font = "bold 12px Arial";
@@ -533,6 +535,7 @@
         if (document.getElementById('resP2')) document.getElementById('resP2').innerText = P2.toFixed(2);
         if (document.getElementById('resP1x')) document.getElementById('resP1x').innerText = P1x.toFixed(2);
         if (document.getElementById('resP1y')) document.getElementById('resP1y').innerText = P1y.toFixed(2);
+        if (document.getElementById('resP2y')) document.getElementById('resP2y').innerText = P2.toFixed(2);
         if (document.getElementById('resN1')) document.getElementById('resN1').innerText = N1.toFixed(2);
         
         if (document.getElementById('resFrS1')) document.getElementById('resFrS1').innerText = FrS1_max.toFixed(2);
@@ -571,15 +574,15 @@
         if (estadoFriccionText) {
             if (seMueve) {
                 estadoFriccionText.innerHTML = "Se mueve → Se usa <b>Fricción Cinética</b><br><br>" +
-                                               "Ecuación vectorial: <span class='vector-text'>F</span><sub>rk1</sub> = μ<sub>k1</sub> • <span class='vector-text'>N</span><sub>1</sub><br><br>" +
+                                               "Ecuación vectorial: <span class='vector-text'>F</span><sub>rc1</sub> = μ<sub>c1</sub> • <span class='vector-text'>N</span><sub>1</sub><br><br>" +
                                                "Cálculo de magnitud:<br>" +
-                                               "F<sub>rk1</sub> = μ<sub>k1</sub> • N<sub>1</sub> = <span class='calc-res'>" + Fr1_act.toFixed(2) + "</span> N";
+                                               "F<sub>rc1</sub> = μ<sub>c1</sub> • N<sub>1</sub> = <span class='calc-res'>" + Fr1_act.toFixed(2) + "</span> N";
                 estadoFriccionText.style.color = "#2980b9";
             } else {
                 estadoFriccionText.innerHTML = "Reposo absoluto → <b>Fricción Estática Activa</b><br><br>" +
                                                "La fricción estática parcial contrarresta exactamente la fuerza a favor.<br><br>" +
                                                "Cálculo de magnitud:<br>" +
-                                               "F<sub>rs1(activa)</sub> = <span class='calc-res'>" + Fr1_act.toFixed(2) + "</span> N";
+                                               "F<sub>re1(activa)</sub> = <span class='calc-res'>" + Fr1_act.toFixed(2) + "</span> N";
                 estadoFriccionText.style.color = "#c0392b";
             }
         }
@@ -643,7 +646,10 @@
             ctx.stroke();
             ctx.fillStyle = "#d35400";
             ctx.font = "bold 14px Arial";
-            ctx.fillText("α₁", -15, 55);
+            
+            // Centramos el texto matemáticamente en la bisectriz del ángulo
+            let bisectriz = Math.PI/2 + a1/2;
+            ctx.fillText("α₁", 55 * Math.cos(bisectriz), 55 * Math.sin(bisectriz));
             
             ctx.restore();
             // M2 no se descompone
@@ -656,13 +662,32 @@
             // M2 no tiene normal
         }
 
+        // Mostrar Fricción Estática Máxima en los pasos 6 y 7
+        if (step >= 6 && step < 8) {
+            const colorFrMax = "#d35400"; // Naranja oscuro para distinguirlo
+            let dirR1 = (P2 > P1x) ? -1 : 1; 
+
+            if (FrS1_max > 0) {
+                // Dibujamos la fricción saliendo desde el centro de masas
+                ctx.save(); ctx.translate(blockCenter1X, blockCenter1Y); ctx.rotate(-a1);
+                let drawDir = (P2 === P1x) ? 1 : dirR1; // Por defecto hacia la derecha si está equilibrado
+                let labelDx = (drawDir === 1) ? -15 : -55; // Evitar que el texto se escape
+                drawVector(0, 0, drawDir * FrS1_max * SCALE, 0, colorFrMax, "Fre1(máx)", labelDx, -45);
+                ctx.restore();
+            }
+        }
+
+        // Mostrar Fricción Activa en el paso 8 en adelante
         if (step >= 8) {
             const colorFr = "#8b4513"; 
             let dirR1 = (P2 > P1x) ? -1 : 1; 
 
             if (P2 !== P1x && Fr1_act > 0) {
+                let lblFr = seMueve ? "Frc1" : "Fre1(act)";
+                // Dibujamos la fricción saliendo desde el centro de masas
                 ctx.save(); ctx.translate(blockCenter1X, blockCenter1Y); ctx.rotate(-a1);
-                drawVector(0, 0, dirR1 * Fr1_act * SCALE, 0, colorFr, "Fr1", dirR1 * Fr1_act * SCALE - 10, -30);
+                let labelDx = (dirR1 === 1) ? -15 : -40; // Evitar que el texto se escape
+                drawVector(0, 0, dirR1 * Fr1_act * SCALE, 0, colorFr, lblFr, labelDx, -45);
                 ctx.restore();
             }
         }
@@ -694,19 +719,19 @@
                 if (seMueve) {
                     if (moveDir === 1) {
                         eqsMovElem.innerHTML = "<b>Sistema de ecuaciones:</b><br>" +
-                            "1) T - P<sub>1x</sub> - F<sub>rk1</sub> = m₁ · a<br>" +
+                            "1) T - P<sub>1x</sub> - F<sub>rc1</sub> = m₁ · a<br>" +
                             "2) P₂ - T = m₂ · a<br><br>" +
                             "<b>1º Cálculo de (a):</b><br>" +
-                            "a = (P₂ - P<sub>1x</sub> - F<sub>rk1</sub>) / (m₁ + m₂)<br>" +
+                            "a = (P₂ - P<sub>1x</sub> - F<sub>rc1</sub>) / (m₁ + m₂)<br>" +
                             "a = <span class='calc-res'>" + a.toFixed(2) + "</span> m/s²<br><br>" +
                             "<b>2º Cálculo de (T):</b><br>" +
                             "T = P₂ - m₂ · a = <span class='calc-res'>" + T_valor.toFixed(2) + "</span> N";
                     } else {
                         eqsMovElem.innerHTML = "<b>Sistema de ecuaciones:</b><br>" +
-                            "1) P<sub>1x</sub> - T - F<sub>rk1</sub> = m₁ · a<br>" +
+                            "1) P<sub>1x</sub> - T - F<sub>rc1</sub> = m₁ · a<br>" +
                             "2) T - P₂ = m₂ · a<br><br>" +
                             "<b>1º Cálculo de (a):</b><br>" +
-                            "a = (P<sub>1x</sub> - P₂ - F<sub>rk1</sub>) / (m₁ + m₂)<br>" +
+                            "a = (P<sub>1x</sub> - P₂ - F<sub>rc1</sub>) / (m₁ + m₂)<br>" +
                             "a = <span class='calc-res'>" + a.toFixed(2) + "</span> m/s²<br><br>" +
                             "<b>2º Cálculo de (T):</b><br>" +
                             "T = P₂ + m₂ · a = <span class='calc-res'>" + T_valor.toFixed(2) + "</span> N";
